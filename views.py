@@ -7,8 +7,10 @@ from models import *
 data1={"range10":range(10)}
 def index(request):
     # data1={}
-    group = Group.objects.get(pk=1)
-    data1 = {"group":group}
+    group = Group.objects.get(pk=2)
+    project = Project.objects.get(pk=1)
+    data1 = {"group1":group,
+            "project":project}
     return render(request,"gjobs/index.html",data1)
 
 def welcom(request):

@@ -26,7 +26,8 @@
 body{
     margin:0em;
     background-color:@c-bg;
-    font-family:monospace,arial,sans-serif;
+    // font-family: monospace,arial,sans-serif;
+    font-family: "Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;
     font-size:12px;
 }   
 
@@ -92,30 +93,30 @@ div{
 .ct {
     background-color:#fff;
     width:1200px;
-    min-height:500px;
+    // min-height:200px;
     margin-left:auto;
     margin-right:auto;
     box-sizing:border-box;
     margin-top:40px;
-    margin-bottom:80px;
+    margin-bottom:40px;
     // border:1px #f00 solid;
 }
 
 thead tr {
     background-color:@c-bar;
     height:30px;
+    width:100%;
     color:@c-c-w;
     font-size:12px;
     font-weight:800;
     th {
     border-right: 1px solid @c-c-w;
-    // border-top: 1px solid @c-c-w;
     }
 }
 tr td {
     // border:1px #eee solid;
-    border-right: 1px solid #e0eeee;
-    border-top: 1px solid #e0eeee;
+    border-right: 1px solid #e8fafa;
+    border-top: 2px solid #e8fafa;
     padding:0px;
     margin:0px;
     list-style: none;
@@ -125,8 +126,12 @@ tr td {
     overflow:hidden;text-overflow:ellipsis;
  // ;white-space:nowrap;
 }
+tbody tr {
+    height:28px;
+}
 table {
-    border:2px @c-bar solid;
+    // border:2px @c-bar solid;
+    // border:2px @c-c-w solid;
 }
 .container {
     .ct ;
@@ -140,7 +145,6 @@ table {
             margin:20px;
             height:100%;
             background-color:#f32;
-            
         }
         // background-color:#fef;
     }
@@ -181,7 +185,6 @@ p {
 .group-bar {
     background-color:@c-bar;
     color:#fff;
-    // width:100%;
     height:30px;
     padding-left:5px;
     vertical-align: middle;
@@ -190,3 +193,21 @@ p {
 .group-info{
     height:150px;
     }
+
+#tr-tmplate{
+    // display:none;
+}
+.last-th{
+    border-right: 0px none @c-c-w;
+}
+// button{
+//     border:1px #fff block;
+//     background-color:#dd4455;
+//     color:#fff;
+//     -webkit-border-radius: 15px;
+//     -moz-border-radius: 15px;
+//     border-radius: 15px;
+//     cursor:pointer;
+//     font-size:12px;
+// }
+

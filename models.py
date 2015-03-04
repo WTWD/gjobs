@@ -20,6 +20,7 @@ class JobInfo(models.Model):
     edtime = models.DateTimeField(default=datetime.now,verbose_name="结束时间")
     status = models.CharField(max_length=100)
     Result = models.CharField(max_length=200)
+    # spend = models.IntegerField(null=True,blank=True,default=0)
     Job = models.ForeignKey(Jobs)
     def __str__(self):    # __unicode__ on python2
         return str(self.jobsid)

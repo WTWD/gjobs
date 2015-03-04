@@ -1,17 +1,80 @@
 {%extends "gjobs/base.html"%}
 {%block main%}
-<br>
-<br>
-<br>
-<br>
-<table style="margin-top: -41px;" class="table table-hover" id="table" data-toggle="table" data-url="data/data1.json" data-show-columns="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-pagination="true" data-height="500">
-        <thead>
-        <tr><th style=""><div class="th-inner ">ID</div><div class="fht-cell"></div></th><th style=""><div class="th-inner ">Item Name</div><div class="fht-cell"></div></th><th style=""><div class="th-inner ">Item Price</div><div class="fht-cell"></div></th></tr>
-        </thead>
-    <tbody><tr data-index="0"><td style="">100</td><td style="">Item 0</td><td style="">$0</td></tr><tr data-index="1"><td style="">101</td><td style="">Item 1</td><td style="">$1</td></tr><tr data-index="2"><td style="">102</td><td style="">Item 2</td><td style="">$2</td></tr><tr data-index="3"><td style="">103</td><td style="">Item 3</td><td style="">$3</td></tr><tr data-index="4"><td style="">104</td><td style="">Item 4</td><td style="">$4</td></tr><tr data-index="5"><td style="">105</td><td style="">Item 5</td><td style="">$5</td></tr><tr data-index="6"><td style="">106</td><td style="">Item 6</td><td style="">$6</td></tr><tr data-index="7"><td style="">107</td><td style="">Item 7</td><td style="">$7</td></tr><tr data-index="8"><td style="">108</td><td style="">Item 8</td><td style="">$8</td></tr><tr data-index="9"><td style="">109</td><td style="">Item 9</td><td style="">$9</td></tr></tbody></table>
-
-<hr>
-{{group.name}}
-{{group.created}}
-<hr>
+<!-- <hr> -->
+<!-- {{project.name}} -->
+<!-- {{project.group.count}} -->
+<!-- <hr> -->
+<!-- {{group1.name}} -->
+<!-- {{group1.created}} -->
+<!-- {{group1.jobs.count}} -->
+<!-- <hr> -->
+{%for group in project.group.all%}
+<div class="ct"> 
+<table width=100% cellspacing="0" >
+    <thead >
+        <!-- <tr> -->
+        <!--     <th style="width:20%;">JOBS    </th> -->
+        <!--     <th style="width:5%;" >JobsID  </th> -->
+        <!--     <th style="width:5%;" >User    </th> -->
+        <!--     <th style="width:5%;" >Owner   </th> -->
+        <!--     <th style="width:10%;">ST-time </th> -->
+        <!--     <th style="width:10%;">ED-time </th> -->
+        <!--     <th style="width:5%;" >Spend   </th> -->
+        <!--     <th style="width:10%;">Exc-host</th> -->
+        <!--     <th style="width:10%;">Status  </th> -->
+        <!--     <th style="width:10%;">Result  </th> -->
+        <!--     <th style="width:10%;" class ="last-th">Operate</th> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+            <th style="width:25%;">任务</th>
+            <th style="width:5%;">任务ID</th>
+            <th style="width:5%;">用户</th>
+            <th style="width:5%;">归属</th>
+            <th style="width:10%;">开始</th>
+            <th style="width:10%;">结束</th>
+            <th style="width:5%;">耗时</th>
+            <th style="width:5%;">执行主机</th>
+            <th style="width:10%;">状态</th>
+            <th style="width:10%;">结果</th>
+            <th style="width:10%;" class ="last-th">操作</th>
+        </tr>
+    </thead>
+    <tbody id="tr-tmplate">
+{%for job in group.jobs.all%}
+{%if job.jobinfo_set.all%}
+{%for his in job.jobinfo_set.all%}
+        <tr>
+            <td id="JOBS"    ><strong>{{job.path}}</strong></td>
+            <td id="JobsID"  >{{his.jobsid}}</td>
+            <td id="User"    >{{his.user}}</td>
+            <td id="Owner"   >{{his.owner}}</td>
+            <td id="ST-time" >{{his.sttime}}</td>
+            <td id="ED-time" >{{his.edtime}}</td>
+            <td id="Spend"   >spendtime</td>
+            <td id="Exc-host">dlinux25</td>
+            <td id="Status"  >{{his.status}}</td>
+            <td id="Result"  >{{his.Result}}</td>
+            <td id="Operate" class ="last-th" > <div class = "button rosy small bigrounded">STOP</div> </td>
+        </tr>
+{%endfor%}
+{%else%}
+        <tr>
+            <td id="JOBS"    ><strong>{{job.path}}</strong></td>
+            <td id="JobsID"  ></td>
+            <td id="User"    ></td>
+            <td id="Owner"   ></td>
+            <td id="ST-time" ></td>
+            <td id="ED-time" ></td>
+            <td id="Spend"   ></td>
+            <td id="Exc-host"></td>
+            <td id="Status"  ></td>
+            <td id="Result"  ></td>
+            <td id="Operate" class ="last-th" ><div class="button green small bigrounded"> Submit</div> </td>
+        </tr>
+{%endif%}
+{%endfor%}
+    </tbody>
+</table>
+</div>
+{%endfor%}
 {%endblock%}
