@@ -1,0 +1,54 @@
+{%extends "gjobs/base.html"%}
+{%block main%}
+<div class="ct">
+<table cellspacing="0" >
+    <thead>
+        <tr>
+            <th id="JOBS"    style="width:20%;">JOBS    </th>
+            <th id="JobsID"  style="width:5%;" >JobsID  </th>
+            <th id="User"    style="width:5%;" >User    </th>
+            <th id="Owner"   style="width:5%;" >Owner   </th>
+            <th id="ST-time" style="width:10%;">ST-time </th>
+            <th id="ED-time" style="width:10%;">ED-time </th>
+            <th id="Spend"   style="width:5%;" >Spend   </th>
+            <th id="Exc-host" style="width:10%;">Exc-host</th>
+            <th id="Status"  style="width:10%;">Status  </th>
+            <th id="Result"  style="width:10%;">Result  </th>
+            <th id="Operate" style="width:10%;">Operation</th>
+        </tr>
+        <!-- <tr> -->
+        <!--     <th style="width:20%;">任务</th> -->
+        <!--     <th style="width:10%;">任务ID</th> -->
+        <!--     <th style="width:10%;">用户</th> -->
+        <!--     <th style="width:10%;">归属</th> -->
+        <!--     <th style="width:10%;">开始</th> -->
+        <!--     <th style="width:10%;">结束</th> -->
+        <!--     <th style="width:10%;">耗时</th> -->
+        <!--     <th style="width:10%;">执行主机</th> -->
+        <!--     <th style="width:10%;">状态</th> -->
+        <!--     <th style="width:10%;">结果</th> -->
+        <!--     <th style="width:10%;"></th> -->
+        <!-- </tr> -->
+    </thead>
+    <tbody style="display:block">
+    {% for i in range10 %}
+        <tr>
+            <td id="JOBS"    >../dview/tmp/tsark3/simcmd/xxxxx/123456789</td>
+            <td id="JobsID"  >432131</td>
+            <td id="User"    >marlone</td>
+            <td id="Owner"   >nansu</td>
+            <td id="ST-time" >02/27 3:15</td>
+            <td id="ED-time" >02/27 4:15</td>
+            <td id="Spend"   >1:00</td>
+            <td id="Exc-host">dlinux25</td>
+            <td id="Status"  >Finish</td>
+            <td id="Result"  >compile-Error ...</td>
+            <td id="Operate" > <button>STOP</button> </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+{% load staticfiles %}
+<!-- <script src="{% static 'gjobs/js/gjobs.js'%}"></script> -->
+{%endblock%}         
