@@ -3,6 +3,7 @@
 @c-c-w     :#ffffff;
 // @c-bar     :#03bb91;
 @c-bar     :#66cccc;
+// @c-bar     :#45b6b0;
 // @c-bar     :#dd4455;
 @c-bg-bar  :#444444;
 @c-c-bar   :#ffffff;
@@ -14,6 +15,7 @@
 @c-tag     :#ff9933;
 @c-dark    :#aaaaaa;
 @c-green   :#22aa22;
+@c-nav-bg  :@c-bar;
 
 @c-footer  :#eeeeee;
 @nav-height:50px;
@@ -22,7 +24,75 @@
 @w-common:980px;
 
 // @import "grid.less" ;
-
+a,a:hover{text-decoration:none;}
+//---------------------------------------------------------
+// functions
+.tb-gradient(@color-from,@color-to) {
+    background: -webkit-gradient(linear, left top, left bottom, from(@color-from), to(@color-to));
+    background: -moz-linear-gradient(top,  @color-from,  @color-to);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='@color-from', endColorstr='@color-to');
+}
+.border-radius(@radius){
+    -webkit-border-radius:@radius;
+    -moz-border-radius:@radius;
+    border-radius:@radius;
+}
+.button-color(@cn,@cn-bd,@ch-bg,@ca,@cn-bg,@cn-f,@cn-t,@ch-f,@ch-t,@ca-f,@ca-t) {
+    color: @cn;
+    border: solid 1px @cn-bd;
+    background: @cn-bg;
+    background: -webkit-gradient(linear, left top, left bottom, from(@cn-f), to(@cn-t));
+    background: -moz-linear-gradient(top, @cn-f,  @cn-t);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='@cn-f', endColorstr='@cn-t');
+    &:hover {
+    background: @ch-bg;
+    background: -webkit-gradient(linear, left top, left bottom, from(@ch-f), to(@ch-t));
+    background: -moz-linear-gradient(top, @ch-f,  @ch-t);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='@ch-f', endColorstr='@ch-t');
+    }
+    &:active {
+    color: @ca;
+    background: -webkit-gradient(linear, left top, left bottom, from(@ca-f), to(@ca-t));
+    background: -moz-linear-gradient(top,  @ca-f,  @ca-t);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='@ca-f', endColorstr='@ca-t');
+    }     
+}
+// -webkit-border-top-left-radius:5px;
+// -webkit-border-top-right-radius:5px;
+// -moz-border-top-left-radius:5px;
+// -moz-border-top-right-radius:5px;
+// border-top-left-radius:5px;
+// border-top-right-radius:5px;
+//---------------------------------------------------------
+//.color (@cn,@cn-bd,@ch-bg,@ca,@cn-bg,@ch-bg,@cn-f,@cn-t,@ch-f,@ch-t,@ca-f,@ca-t){
+.pink2{
+.button-color(#feeef5,#d2729e,#d57ea5,#f3c3d9,#f895c2,#feb1d3,#F171AB,#f4aacb,#e86ca4,#f171ab,#feb1d3);
+}
+.flatbutton(@color,@cn) {
+    .button-color(@color,@cn,@cn,@color,@cn,@cn,@cn,@cn*0.9,@cn*0.9,@cn*1.2,@cn*1.2);
+}
+.rmv-c{
+    .flatbutton(#ffffff,#888888);
+}
+.add-c{
+    .flatbutton(#ffffff,#f47a20);
+}
+.add-l-c{
+    .flatbutton(#ffffff,#7db72f);
+}
+.cmt-c{
+    .flatbutton(#ffffff,#f16c7c);
+}
+.flt-green{
+    .flatbutton(#ffffff,#7db72f);
+}
+.flt-red{
+    .flatbutton(#ffffff,#f17c7c);
+}
+// input[type='checkbox']{
+//     background-color:#fff;
+//     opcaity:0.5;
+// }
 body{
     margin:0em;
     background-color:@c-bg;
@@ -91,23 +161,29 @@ body{
 div{
     // border:1px #ff0000 solid;
 }
+.center{
+    margin-left:auto;
+    margin-right:auto;
+}
 .ct {
     background-color:#fff;
     width:1200px;
+    .center;
     // min-height:200px;
-    margin-left:auto;
-    margin-right:auto;
     box-sizing:border-box;
-    margin-top:40px;
+    margin-top:10px;
     margin-bottom:40px;
     // border:1px #f00 solid;
 }
 
 thead tr {
     background-color:@c-bar;
+    color:@c-c-w;
+    // .tb-gradient(@c-bar,@c-bar*0.9);
+    // background-color:#333;
+    // color:@c-bar;
     height:30px;
     width:100%;
-    color:@c-c-w;
     font-size:12px;
     font-weight:800;
     th {
@@ -138,6 +214,52 @@ tbody tr {
 table {
     // border:2px @c-bar solid;
     // border:2px @c-c-w solid;
+    border-bottom:2px #eeeeee solid;
+}
+.jobs-title{
+    position:relative;
+    .center;
+    height:100px;
+    // background-color:#fff;
+    width:1200px;
+    margin-top:40px;
+    .avata{
+        float:left;
+        width:80px;
+        height:80%;
+        margin-left:20px;
+        margin-right:20px;
+        margin-top:10px;
+        // background-color:@c-nav-bg;
+        background-color:@c-c-w;
+        border:2px @c-bar solid;
+        .border-radius(50%);
+    }
+    .jobs-nav-bar{
+        float:left;
+        width:1000px;
+        // background-color:@c-nav-bg;
+        height:20px;           
+        margin-top:50px;
+        // margin-left:-22px;
+        // padding-left:-22px;
+        font-size:14px;
+        // font-weight:600;
+        color:#50b6b0;
+        border-bottom:6px @c-bar solid;
+        vertical-align:middle;
+        a{
+            color:#50b6b0;
+            margin-left:10px;
+            &:hover{
+                color:#50b6b0*1.2;
+            }
+        }
+    }
+}
+.tb-footer{
+    // height:30px;
+    padding:5px;
 }
 .container {
     .ct ;

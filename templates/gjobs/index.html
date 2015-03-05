@@ -8,6 +8,10 @@
 <!-- {{group1.created}} -->
 <!-- {{group1.jobs.count}} -->
 <!-- <hr> -->
+<div class="jobs-title">
+<div class="avata"></div>
+<div class="jobs-nav-bar"> <a href="">Malone</a> /<a href="">Whale2</a> /<a href="">WCDMA-regression</a>  </div>
+</div>
 {%for group in project.group.all%}
 <div class="ct"> 
 <table width=100% cellspacing="0" >
@@ -26,7 +30,8 @@
         <!--     <th style="width:10%;" class ="last-th">Operate</th> -->
         <!-- </tr> -->
         <tr>
-            <th style="width:25%;">任务</th>
+            <th style="width:2%;">    </th>
+            <th style="width:23%;">任务</th>
             <th style="width:5%;">任务ID</th>
             <th style="width:5%;">用户</th>
             <th style="width:5%;">归属</th>
@@ -44,6 +49,7 @@
 {%if job.jobinfo_set.all%}
 {%for his in job.jobinfo_set.all%}
         <tr>
+            <td id="select"  ><input type="checkbox" name="{{his.jobsid}}" value="{{his.jobsid}}"></td>
             <td id="JOBS"    ><strong>{{job.path}}</strong></td>
             <td id="JobsID"  >{{his.jobsid}}</td>
             <td id="User"    >{{his.user}}</td>
@@ -59,6 +65,7 @@
 {%endfor%}
 {%else%}
         <tr>
+            <td id="select"  ><input type="checkbox" name="{{his.jobsid}}" value="{{his.jobsid}}"></td>
             <td id="JOBS"    ><strong>{{job.path}}</strong></td>
             <td id="JobsID"  ></td>
             <td id="User"    ></td>
@@ -75,6 +82,16 @@
 {%endfor%}
     </tbody>
 </table>
+<div class="tb-footer"> 
+<div class="button rmv-c small selectall" > 全选</div> 
+<div class="button rmv-c small reverse" > 反选</div> 
+<div class="button rmv-c small unselect" > 反不选</div> 
+<div class="button rmv-c small "> remove</div> 
+<div class="button add-c small "> add</div> 
+<div class="button add-c small "> add-list</div> 
+<div class="button add-l-c small "> Commit-all</div> 
+<div class="button cmt-c small "> Stop-all</div> 
+</div>
 </div>
 {%endfor%}
 {%endblock%}

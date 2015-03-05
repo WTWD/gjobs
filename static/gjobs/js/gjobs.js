@@ -3,7 +3,7 @@ $(document).ready(function(){
         $.ajax({
             url:"/gjobs/jobsjson",
             dataType:"json",
-            type:"GET"
+            type:"GET",
             success:function(result,stats,ahx){
                 freshtbody(result)
             }
@@ -44,6 +44,22 @@ $(document).ready(function(){
         },1000)   //set interval time 1000ms
     }
 
-    refreshontime()
-    
+    // refreshontime()
+
+    function select(){
+        $(".selectall").click(function(){
+            $(this).parent().parent().find(":checkbox").prop("checked",true);
+        })
+        $(".unselect").click(function(){
+            $(this).parent().parent().find(":checkbox").prop("checked",false);
+        })
+        $(".reverse").click(function(){
+            $(this).parent().parent().find(":checkbox").each(function(){
+                // alert($(this).attr("checked"))
+                $(this).prop("checked",!$(this).prop("checked"));
+                // $(this).attr("checked",false);
+            })
+        })
+    }
+    select()
 })                         
