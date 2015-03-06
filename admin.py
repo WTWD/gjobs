@@ -6,8 +6,8 @@ from gjobs.models import *
 # Register your models here.
 
 # admin.site.register(Article)
-admin.site.register(Jobs)
-admin.site.register(JobInfo)
+admin.site.register(Job)
+admin.site.register(Jobhis)
 admin.site.register(Group)
 admin.site.register(Project)
 

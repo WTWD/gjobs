@@ -62,4 +62,24 @@ $(document).ready(function(){
         })
     }
     select()
+
+    // function foldhis(){
+    //     $("tbody > tr").click(function(){
+    //         $(".fold").hide()
+    //         var slug = $(this).attr('id')
+    //         var sel_his = $(this).parent().find("."+slug)
+    //         sel_his.addClass("fold")
+    //         sel_his.show()
+    //         // $(this).parent().find("."+slug).toggle()
+    //     })
+    // }  
+
+    function foldhis(){
+        $("tbody > tr").click(function(){
+            var slug = $(this).attr('id')
+            $(this).parent().find("."+slug).toggle()
+        })
+    }
+
+    foldhis()
 })                         
