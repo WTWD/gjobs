@@ -75,9 +75,9 @@ $(document).ready(function(){
     // }  
 
     function foldhis(){
-        $("tbody > tr").click(function(){
-            var slug = $(this).attr('id')
-            $(this).parent().find("."+slug).toggle()
+        $("tbody > tr >td").not("#select,#Operate").click(function(){
+            var slug = $(this).parent().attr('id')
+            $(this).parent().parent().find("."+slug).toggle()
         })
     }
 
