@@ -26,6 +26,7 @@ def create_job(path):
 
 def create_jobhis(job):
     RESULT = ["Compile Error!","Pass!","Faild!","Unknown"]
+    EXCHOST = ["hlinux","dlinux"]
     users = User.objects.all()
     user = random.choice(users)
     owner = random.choice(users)
@@ -39,18 +40,23 @@ def create_jobhis(job):
         result = random.choice(RESULT)
     elif status == 3:
         result = random.choice(RESULT)
+    exchost = random.choice(EXCHOST)+str(random.randint(10,200))
     result = random.choice(RESULT)
     spend = random.randint(1,3600*24);
     jh = Jobhis(user=user,owner=owner,jobsid=jobsid,status=status,result=result,spend=spend,job=job)
     jh.save()
+    EXCHOST = ["hlinux","dlinux"]
     jh.slug= myslug("jh",jh.id)
     jh.save()
     # print jh
+
 def create_group(name):
-    g = Group(name=name)
+    founder = User.objects.all()[0]
+    g = Group(name=name,founder=founder)
     g.save()
     g.slug = myslug("g",g.id)
     g.save()
+    return g
 
 def create_project(name):
     users = User.objects.all()
@@ -64,8 +70,8 @@ def create_project(name):
     for group in Group.objects.all():
         p.group.add(group)
 
-def job10(n):
-    for i in range(n):
+def job10(n,m):
+    for i in range(n,m):
         create_job("/view/root_dview/tmp/whale/work/test%03d/runsim"%i)
 
 def jobhis(n):
@@ -76,37 +82,64 @@ def jobhis(n):
         for i in range(random.randint(0,n)):
             create_jobhis(job)
 
-def group():
+def group(group_name):
     jobs = Job.objects.all()
-    create_group("wcdma_v0p1-regressions")
-    create_group("wcdma_v0p2-check")
-    g1 = Group.objects.all()[0]
+    g = create_group(group_name)
     for job in jobs:
-        g1.jobs.add(job)
-    g2 = Group.objects.all()[1]
-    for job in jobs[:3]:
-        g2.jobs.add(job)
+        g.jobs.add(job)
+    # g2 = Group.objects.all()[1]
+    # for job in jobs[:3]:
+        # g2.jobs.add(job)
 
-def project():
-    create_project("Whale2")
+def project(name):
+    create_project(name)
+
+def addg2p(group_name,proj):
+    proj=Project.objects.get(name=proj)
+    group=Group.objects.get(name=group_name)
+    proj.group.add(group)
+
+def addj2g(group_name):
+    group=Group.objects.get(name=group_name)
+    jobs = Job.objects.all()
+    for job in jobs:
+        group.jobs.add(job)
+
 # job = Job.objects.all()[0]
 # create_jobhis(job)
 # create_jobhis(job)
 #----------------------------------------
 # 1. gen n job
-# job10(13)
+# job10(0:13)
+# job10(14,30)
 # 2. gen job history
 # jobhis(6)
 # 3. gen Group
-# group()
+# group("wcdma_v0p2-check")
+# add job to group
+# group("ici-v0.1-case_regression")
+addj2g("ici-v0.1-case_regression")
 # 4. gen Project
-# project()
+# project("Whale2")
+# project("Tshark3")
+# project("PikeXZ")
+# project("Dophin")
+# project("SharkL")
+# 5. add group to Project
+# addg2p("ici-v0.1-case_regression","Whale2")
 
-g1 =Group.objects.all()[0]
-j1 = g1.jobs.all()[0]
-jh = j1.jobhis_set.all()
-print jh
+
+# g1 =Group.objects.all()[0]
+# j1 = g1.jobs.all()[0]
+# jh = j1.jobhis_set.all()
+# print jh
 # p1 = Project.objects.all()[0]
 # print p1.name
 # print p1.members.all()
+# jh = Jobhis.objects.all()
+# EXCHOST = ["hlinux","dlinux"]
+# for i in jh:
+#     exchost = random.choice(EXCHOST)+str(random.randint(10,200))
+    # i.exchost =  exchost
+    # i.save()
 

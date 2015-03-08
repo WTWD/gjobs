@@ -29,6 +29,7 @@ class Jobhis(models.Model):
     sttime = models.DateTimeField(default=datetime.now, verbose_name='启动时间')
     edtime = models.DateTimeField(default=datetime.now,verbose_name="结束时间")
     status = models.IntegerField(choices=Status_choice,default=0,verbose_name="状态")
+    exchost = models.CharField(max_length=50,null=True)
     result = models.CharField(max_length=200)
     spend = models.IntegerField(default=0)
     job = models.ForeignKey(Job)
@@ -40,7 +41,9 @@ class Jobhis(models.Model):
 
 class Group(models.Model):
     name  = models.CharField(max_length=200,null=True,blank=True)
+    is_private = models.BooleanField(default=False,verbose_name="自己可见")
     jobs = models.ManyToManyField(Job)
+    founder = models.ForeignKey(User,related_name="group_founder")
     slug  = models.CharField(max_length=50,blank=True)
     pass_numb = models.IntegerField(default=0)
     faild_numb = models.IntegerField(default=0)

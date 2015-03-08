@@ -1,0 +1,51 @@
+{%extends "gjobs/base.html"%}
+{%block main%}
+<div class="container">
+<div class="top">
+</div>
+<div class="left">
+<div class="proj-title-bar"> <p> Projects </p> </div>
+{% for project in projects %}
+<a href="/gjobs/user/{{user.username}}/{{project.slug}}">
+<div class="proj-bar"> <p>{{project.name}} </p> </div></a> 
+{% endfor %}
+</div>
+<div class="right">
+
+{% for group in act_proj.group.all %}
+<div class="group-bar">  <a href="/gjobs/group/{{group.slug}}">{{act_proj.name}}  /  {{group.name}}</a> founder : <a href="/gjobs/user/{{group.founder.username}}">{{group.founder.username}}</a></div>
+<div class="group-info"> 
+<div class="chart chart1" data-percent="100" data-track-color="#ddd"><span class="percent"></span></div>
+<div class="chart chart2" data-percent="73" data-bar-color="#70b070" ><span class="percent"></span></div>
+<div class="chart" data-percent="12" data-bar-color="#669ae0" ><span class="percent"></span></div>
+</div>
+{% endfor %}
+</div>
+</div>
+</div>
+{% load staticfiles %}  
+<script src="{% static 'gjobs/js/jquery.easypiechart.js'%}"></script>
+<script>
+    $(function() {
+        $('.chart').easyPieChart({
+            //your options goes here
+            animate:{ duration: 800, enabled: true },
+            easing: 'easeOutBounce',
+            delay: 1000,
+            barColor: '#f07579',
+            trackColor: '#ddd',
+            scaleColor: false,
+            lineWidth: 7,
+            trackWidth: 7,
+            lineCap: 'square',
+            size:100,
+            onStep: function(from, to, percent) {
+                $(this.el).find('.percent').text(Math.round(percent));
+            }
+            <!-- onStep: function(from, to, percent) { -->
+            <!--     this.el.children[0].innerHTML = Math.round(percent); -->
+            <!-- } -->
+        });
+    });
+</script>
+{%endblock%}
