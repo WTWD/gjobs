@@ -322,8 +322,8 @@ table {
     height:@bar-height;
     line-height:@bar-height;
     text-align:center;
-    margin-left:-5px;
-    border-left:5px @c-bar solid;
+    // margin-left:-5px;
+    // border-left:5px @c-bar solid;
     // inline-height:35px;   
     // overflow:hidden;
 }
@@ -337,15 +337,16 @@ table {
     border-top:1px #fff solid;
     border-bottom:1px #fff solid;
     &:hover {
-        background-color:#fff;
-        color:@c-bar;
-        margin-left:-5px;
-        border-left:5px @c-bar solid;
-        border-top:1px #fff solid;
-        border-bottom:1px #fff solid;
-        // border-top:1px @c-bar solid;
-        // border-bottom:1px @c-bar solid;
+        opacity:0.8;
     }
+}
+.proj-active {
+    background-color:#fff;
+    color:@c-bar;
+    margin-left:-5px;
+    border-left:5px @c-bar solid;
+    border-top:1px #fff solid;
+    border-bottom:1px #fff solid;
 }
 p {
     margin:0px;
@@ -353,7 +354,7 @@ p {
 }
 .group-bar {
     background-color:@c-bar;
-    color:@c-bar;
+    color:#fff;
     font-size:0.8em;
     height:@bar-height;
     line-height:@bar-height;
