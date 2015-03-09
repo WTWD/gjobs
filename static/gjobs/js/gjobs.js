@@ -10,6 +10,18 @@ $(document).ready(function(){
         })
     }
 
+    function ajaxtable(posturl){
+        var jsonStr =$form.serialize();
+        $.ajax({
+            url:posturl,
+            type:"post",
+            data:jsonStr,
+            success:function(result){
+                $form.children("input[name='xx']").val(result);
+            }
+        })
+    }
+
     function freshtbody(result){
         $.each(result,function(jobsid,jobsct){
             var obj = $("tbody>tr#"+jobsid)

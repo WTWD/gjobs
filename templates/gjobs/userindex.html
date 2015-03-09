@@ -2,19 +2,32 @@
 {%block main%}
 <div class="container">
 <div class="top">
+
 </div>
 <div class="left">
-<div class="proj-title-bar"> <p> Projects </p> </div>
+<div class="proj-title-bar"> <p> PROJECTS </p> </div>
+<div class="proj-list">
+{% if act_proj %}
 {% for project in projects %}
 <a href="/gjobs/user/{{user.username}}/{{project.slug}}">
 {% if project == act_proj%}
     <div class="proj-bar proj-active"> <p>{{project.name}} </p> </div></a> 
 {%else%}
-    <div class="proj-bar "> <p>{{project.name}} </p> </div></a> 
+    <div class="proj-bar "> <p>{{project.name}} {{project.slug}}</p> </div></a> 
 {%endif%}
 {% endfor %}
+{%endif%}
+</div>
+<div class="proj-bar "> 
+ <form id="formtest" action="" method="post">
+{% csrf_token %}
+    <p><span>工程名：</span><input type="text" name="username" id="input1" style="width:90px;" /></p>
+</form>   
+<button id="create_proj" class ="button rosy middle ">新建工程</button>  
+</div>
 </div>
 <div class="right">
+{% if act_proj %}
 
 {% for group in act_proj.group.all %}
 <div class="group-bar">  <a href="/gjobs/group/{{group.slug}}">{{act_proj.name}}  /  {{group.name}}</a> founder : <a href="/gjobs/user/{{group.founder.username}}">{{group.founder.username}}</a></div>
@@ -25,6 +38,7 @@
 </div>
 {% endfor %}
 </div>
+{%endif%}
 </div>
 </div>
 {% load staticfiles %}  
@@ -40,16 +54,32 @@
             trackColor: '#ddd',
             scaleColor: false,
             lineWidth: 7,
-            trackWidth: 7,
+            trackWidth: 5,
             lineCap: 'square',
             size:100,
             onStep: function(from, to, percent) {
                 $(this.el).find('.percent').text(Math.round(percent));
             }
-            <!-- onStep: function(from, to, percent) { -->
-            <!--     this.el.children[0].innerHTML = Math.round(percent); -->
-            <!-- } -->
         });
     });
+    $('#create_proj').click(function (){
+    $.get(    
+      '/gjobs/projmanage',
+      {
+        projname:$("#input1").val(),
+        crtuser:"{{user.username}}",
+      },
+      function(data) //回传函数
+      {
+        var myjson='';
+        eval("myjson=" + data + ";");
+        npname = myjson.npname
+        npslug = myjson.npslug
+        // $("#result").html(data);
+        var new_proj = '<a href="/gjobs/user/{{user.username}}/'+npslug+'"><div class="proj-bar"> <p>'+npname+' </p> </div></a>'
+        $(".proj-list").append(new_proj);
+      }
+    );
+});  
 </script>
 {%endblock%}

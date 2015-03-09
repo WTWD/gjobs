@@ -14,7 +14,9 @@ def index(request):
 def userindex(request,user,proj):
     user_obj = User.objects.get(username=user)
     projects = Project.objects.filter(founder=user_obj)
-    if proj:
+    if not projects:
+        act_proj_obj = None
+    elif proj:
         act_proj_obj = Project.objects.get(slug=proj)
     else:
         act_proj_obj = projects[0]
@@ -43,6 +45,59 @@ def groupindex(request,group):
 def jobindex(request,job):
     data1={"info":job}
     return render(request,"gjobs/jobindex.html",data1)
+
+def welcom(request):
+    data1={}
+    return render(request,"gjobs/welcom.html",data1)
+
+def test(request):
+    data1={}
+    return render(request,"gjobs/test.html",data1)
+
+def testjson(request):
+    print request.POST
+    print request.GET
+    if request.method == 'POST':
+        pass
+        # method = "POST"
+        # return HttpResponse(request.POST)
+    elif request.method == "GET":
+        pass
+        # method = "GET"
+        # return HttpResponse(request.GET)
+    else:
+        method = "EORROR "
+
+    # print method
+
+    data = {
+        "info":"testjson",
+    }
+    jsondata = json.dumps(request.GET)
+    print jsondata
+    # jsondata = json.dumps(data)
+    return HttpResponse(jsondata)
+    
+def projmanage(request):
+    data ={
+        "npname":"HOME",
+        "npslug":"p3211",
+    }
+    projname = request.GET["projname"]
+    username = request.GET["crtuser"]
+    if not projname:
+        return HttpResponse("")
+    user = User.objects.get(username=username)
+    p = Project(name=projname,founder=user)
+    p.save()
+    p.slug=myslug("p",p.id)
+    p.save()
+    data ={
+        "npname":p.name,
+        "npslug":p.slug,
+    }
+    jsondata = json.dumps(data)
+    return HttpResponse(jsondata)
 
 def jobs(request):
     data1={"range10":range(30)}

@@ -283,12 +283,16 @@ table {
     padding:5px;
 }
 .container {
-    .ct ;
+    .center ;
     width:980px;
+    padding-top:40px;
     min-height:800px;
+    // background-color:#fff;
     // overflow:auto;
     .top {
+        background-color:#ffe;
         height:150px;
+        margin-bottom:20px;
         .avarta {
             width:200px;
             margin:20px;
@@ -298,6 +302,7 @@ table {
         // background-color:#fef;
     }
     .left {
+        background-color:#fff;
         position:relative;
         // .tb-gradient(#424549,#424549*0.8);
         width:150px;
@@ -305,29 +310,41 @@ table {
         float:left;
         font-size:0.7em;
         font-weight:600;
+        margin-left:5px;
+        margin-right:5px;
         clear:both;
     }
     .right {
+        background-color:#fff;
         position:relative;
-        width:830px;
+        width:810px;
+        margin-left:5px;
+        margin-right:5px;
         // background-color:#fee;
         float:right;
     }
 }
 .proj-title-bar {
+    .shadow(0px,0px,5px,#aaa);
     background-color:#40474f*1.5;
     // .tb-gradient(@c-bar,@c-bar*0.8);
-    color:#fff;
+    color:@c-bar*1.4;
+    font-size:1.1em;
     // width:150px;
     height:@bar-height;
     line-height:@bar-height;
     text-align:center;
+    margin-left:-5px;
+    margin-right:-5px;
+    margin-bottom:2px;
     // margin-left:-5px;
     // border-left:5px @c-bar solid;
     // inline-height:35px;   
     // overflow:hidden;
 }
 .proj-bar {
+    // margin-left:2px;
+    // margin-right:2px;
     height:@bar-height;
     line-height:@bar-height;
     background-color:@c-bar;
@@ -343,8 +360,10 @@ table {
 .proj-active {
     background-color:#fff;
     color:@c-bar;
-    margin-left:-5px;
-    border-left:5px @c-bar solid;
+    // margin-left:-5px;
+    // border-left:5px @c-bar solid;
+    // border-top:1px @c-bar solid;
+    // border-bottom:1px @c-bar solid;
     border-top:1px #fff solid;
     border-bottom:1px #fff solid;
 }
@@ -353,6 +372,7 @@ p {
     
 }
 .group-bar {
+    .shadow(0px,0px,5px,#aaa);
     background-color:@c-bar;
     color:#fff;
     font-size:0.8em;
