@@ -97,6 +97,7 @@ def projmanage(request):
         "npslug":p.slug,
     }
     jsondata = json.dumps(data)
+    print jsondata
     return HttpResponse(jsondata)
 
 def jobs(request):

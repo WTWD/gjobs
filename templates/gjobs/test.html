@@ -1,24 +1,66 @@
 {%extends "gjobs/base.html"%}
 {%block main%}
-<div class="container">
+<div class="container" style="background-color:#fff">
 
 
-<div id="result" style="background:orange;border:1px solid red;width:300px;height:200px;">
+<!-- <div id="result" style="background:orange;border:1px solid red;width:300px;height:200px;"> -->
 
-</div>
-<form id="formtest" action="" method="post" style="width:10px;">
-{% csrf_token %}
-    <p><span>输入姓名:</span><input type="text" name="username" id="input1" /></p>
-    <p><span>输入年龄:</span><input type="text" name="age" id="input2" /></p>
-    <p><span>输入性别:</span><input type="text" name="sex" id="input3" /></p>
-    <p><span>输入工作:</span><input type="text" name="job" id="input4" /></p>
-</form>
-<button id="send_ajax">提交</button>
-<button id="test_post">POST提交</button>
-<button id="test_get">GET提交</button>
+<!-- </div> -->
+<!-- <form id="formtest" action="" method="post" style="width:10px;"> -->
+<!-- {% csrf_token %} -->
+<!--     <p><span>输入姓名:</span><input type="text" name="username" id="input1" /></p> -->
+<!--     <p><span>输入年龄:</span><input type="text" name="age" id="input2" /></p> -->
+<!--     <p><span>输入性别:</span><input type="text" name="sex" id="input3" /></p> -->
+<!--     <p><span>输入工作:</span><input type="text" name="job" id="input4" /></p> -->
+<!-- </form> -->
+<!-- <button id="send_ajax">提交</button> -->
+<!-- <button id="test_post">POST提交</button> -->
+<!-- <button id="test_get">GET提交</button> -->
+<div class="jboxtest">
+<!-- <div class="spinner"></div> -->
+<span class="tooltip button rosy" title="My tooltip">Hover me!</span>
+<span class="tooltip1 button rosy" title="Another tooltip">Click me!</span>
+<div id="myModal">Click me to open a modal window!</div>
 
+<div class="button rmv-c"  onclick="doit()" data-confirm="删除操作不可恢复，你确定要删除吗">删除</div>
+<a class="button green" href="http://stephanwagner.me" data-confirm="Do you really want to leave this page?">Click me!</a>
+
+</div>  
 
 </div> 
+
 {% load staticfiles %}
 <script src="{% static 'gjobs/js/easypg.js'%}"></script>
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="http://code.jboxcdn.com/0.3.2/jBox.css" rel="stylesheet">
+<script src="http://code.jboxcdn.com/0.3.2/jBox.min.js"></script>
+<script style="javascript/text">
+$(document).ready(function(){   
+    var options = {
+    title: 'My title',
+    content: 'My content',
+    width:100,
+    height :200,
+    };
+    $('.tooltip').jBox('Tooltip',options);
+    $('.tooltip1').jBox('Tooltip', {
+    trigger: 'click'
+    });
+    new jBox('Modal', {
+    width: 300,
+    height: 200,
+    attach: $('#myModal'),
+    title: 'My Modal Window',
+    closeButton:false,
+    content: '<i>Hello there!</i>'
+    });
+    new jBox('Confirm', {
+    cancelButton: '取消',
+    confirmButton: '确定',
+    closeButton:false,
+    animation: 'pluse',
+    <!-- closeOnMouseleave:true, -->
+    });
+}) 
+</script>
 {%endblock%}

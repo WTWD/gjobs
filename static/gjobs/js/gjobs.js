@@ -94,4 +94,13 @@ $(document).ready(function(){
     }
 
     foldhis()
+
+    function delhis(){
+        $(".hisdel").click(function(){
+        $(this).parent().parent().remove()
+        })
+    }
+
+    delhis()
+
 })                         

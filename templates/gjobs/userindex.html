@@ -2,10 +2,28 @@
 {%block main%}
 <div class="container">
 <div class="top">
-
+<div class="username">{{user.username}}</div>
 </div>
 <div class="left">
 <div class="proj-title-bar"> <p> PROJECTS </p> </div>
+
+
+
+<div class="kit">
+<div class="add-box">  
+<div class=" add-input"> 
+ <form id="formtest" action="" method="post">
+{% csrf_token %}
+    <input class="input_field input_field-hoshi"  type="text" name="username" id="add-proj-input" style="width:90px;" />
+</form>   
+</div>
+<div class="add-yes"> 确定</div> 
+</div>
+<div class="proj-add-bar"> <div class="rad">+</div></div>
+</div>  
+
+
+
 <div class="proj-list">
 {% if act_proj %}
 {% for project in projects %}
@@ -18,15 +36,21 @@
 {% endfor %}
 {%endif%}
 </div>
-<div class="proj-bar "> 
- <form id="formtest" action="" method="post">
-{% csrf_token %}
-    <p><span>工程名：</span><input type="text" name="username" id="input1" style="width:90px;" /></p>
-</form>   
-<button id="create_proj" class ="button rosy middle ">新建工程</button>  
-</div>
+
+
 </div>
 <div class="right">
+
+<div class="add-grp-box">  
+<div class=" add-group-input"> 
+ <form id="formtest" action="" method="post">
+{% csrf_token %}
+    <input class="input_field input_field-hoshi"  type="text" name="username" id="add-grp-input" style="width:90px;" />
+</form>   
+</div>
+<div class="add-grp-yes"> 确定</div> 
+</div>
+<div class="add-grp-bar"> <div class="rad">+</div></div>
 {% if act_proj %}
 
 {% for group in act_proj.group.all %}
@@ -37,49 +61,37 @@
 <div class="chart" data-percent="12" data-bar-color="#669ae0" ><span class="percent"></span></div>
 </div>
 {% endfor %}
-</div>
 {%endif%}
+
+
+
+
+</div>
+</div>
 </div>
 </div>
 {% load staticfiles %}  
 <script src="{% static 'gjobs/js/jquery.easypiechart.js'%}"></script>
+<script src="{% static 'gjobs/js/usermng.js'%}"></script>
 <script>
-    $(function() {
-        $('.chart').easyPieChart({
-            //your options goes here
-            animate:{ duration: 800, enabled: true },
-            easing: 'easeOutBounce',
-            delay: 1000,
-            barColor: '#f07579',
-            trackColor: '#ddd',
-            scaleColor: false,
-            lineWidth: 7,
-            trackWidth: 5,
-            lineCap: 'square',
-            size:100,
-            onStep: function(from, to, percent) {
-                $(this.el).find('.percent').text(Math.round(percent));
-            }
-        });
+$(document).ready(function() {
+    $('.chart').easyPieChart({
+        //your options goes here
+        animate:{ duration: 800, enabled: true },
+        easing: 'easeOutBounce',
+        delay: 1000,
+        barColor: '#f07579',
+        trackColor: '#ddd',
+        scaleColor: false,
+        lineWidth: 7,
+        trackWidth: 5,
+        lineCap: 'square',
+        size:100,
+        onStep: function(from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+        }
     });
-    $('#create_proj').click(function (){
-    $.get(    
-      '/gjobs/projmanage',
-      {
-        projname:$("#input1").val(),
-        crtuser:"{{user.username}}",
-      },
-      function(data) //回传函数
-      {
-        var myjson='';
-        eval("myjson=" + data + ";");
-        npname = myjson.npname
-        npslug = myjson.npslug
-        // $("#result").html(data);
-        var new_proj = '<a href="/gjobs/user/{{user.username}}/'+npslug+'"><div class="proj-bar"> <p>'+npname+' </p> </div></a>'
-        $(".proj-list").append(new_proj);
-      }
-    );
 });  
+
 </script>
 {%endblock%}
