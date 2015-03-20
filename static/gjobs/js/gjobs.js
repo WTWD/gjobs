@@ -102,5 +102,26 @@ $(document).ready(function(){
     }
 
     delhis()
-
+    function getckbox(){
+        var cklist = []
+        $("input:checkbox").each(function(){
+            if($(this).prop("checked")==true){
+                var ids = $(this).parent().parent().attr("id")
+                cklist.push(ids)
+            }
+        })
+        return cklist
+    }
+    function rmvslt(){
+        $("#rmvslt").click(function(){
+            var rmvlist = getckbox()
+            var yes  = confirm(rmvlist)
+            if(yes==true){
+                for(i in rmvlist){
+                    $("#"+rmvlist[i]).remove()
+                }
+            }
+        })
+    }
+    rmvslt()   
 })                         
