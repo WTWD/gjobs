@@ -124,4 +124,13 @@ $(document).ready(function(){
         })
     }
     rmvslt()   
+    $("#addfile").click(function (){ 
+    var fileInput = document.getElementById("fileInput");//
+    fileInput.click();//
+    }); 
+ 
+    function inputFileOnChange(){
+        var path = $("#my-file").val()
+        $("#catpath").html(path)
+    }
 })                         
